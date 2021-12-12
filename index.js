@@ -27,21 +27,26 @@ const createBookElement = (book) => {
   return listItem
 }
 
+const newBookButton = document.querySelector('button')
+const form = document.querySelector('form')
+const booksList = document.querySelector('.books')
+
 const handleNewBookClick = (e) => {
   console.log('show the form')
+  e.target.classList.toggle('hide')
+  form.classList.toggle('hide')
 }
 
 const handleFormSubmit = (e) => {
   e.preventDefault()
   console.log('form submitted');
+  e.target.classList.toggle('hide')
+  newBookButton.classList.toggle('hide')
 }
-
-const newBookButton = document.querySelector('button')
-const form = document.querySelector('form')
-const booksList = document.querySelector('.books')
 
 newBookButton.addEventListener('click', handleNewBookClick)
 form.addEventListener('submit', handleFormSubmit)
+form.classList.toggle('hide')
 
 books.forEach(book => {
     const bookNode = createBookElement(book)
