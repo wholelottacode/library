@@ -32,3 +32,12 @@ books.forEach(book => {
     const bookNode = createBookElement(book)
     booksList.appendChild(bookNode)
 })
+
+const form = document.querySelector('form')
+
+const handleFormSubmit = (e) => {
+  e.preventDefault()
+  console.log('form submitted');
+}
+
+form.addEventListener('submit', handleFormSubmit)
