@@ -1,5 +1,5 @@
 class Book {
-  constructor(author, title, numPages, isCompleted) {
+  constructor(title, author, numPages, isCompleted) {
     this.author = author
     this.title = title
     this.numPages = numPages
@@ -39,9 +39,17 @@ const handleNewBookClick = (e) => {
 
 const handleFormSubmit = (e) => {
   e.preventDefault()
+  const form = e.target
   console.log('form submitted');
-  e.target.classList.toggle('hide')
-  newBookButton.classList.toggle('hide')
+  const inputs = Array.from(form.querySelectorAll("input:not(input[type='submit'])"))
+  console.log(inputs)
+  const [title, author, numPages, completed] = inputs
+  const book = new Book(title.value, author.value, numPages.value, completed.checked)
+  booksList.appendChild(createBookElement(book))
+  // clear form <-- extract into separate function
+  inputs.forEach(input => input.value = '')
+  // form.classList.toggle('hide')
+  // newBookButton.classList.toggle('hide')
 }
 
 newBookButton.addEventListener('click', handleNewBookClick)
