@@ -37,19 +37,40 @@ const handleNewBookClick = (e) => {
   form.classList.toggle('hide')
 }
 
+const getFormData = (inputs) => {
+  const data = inputs.map(input => {
+    const inputType = input.getAttribute('type')
+    if(inputType === 'checkbox') {
+      return input.checked
+    }
+    return input.value
+  })
+  return data
+}
+
+const clearForm = (inputs) => {
+  inputs.forEach(input => {
+    const inputType = input.getAttribute('type')
+    if(inputType === 'checkbox') {
+      input.checked = false
+    } else {
+      input.value = ''
+    }
+  })
+}
+
 const handleFormSubmit = (e) => {
   e.preventDefault()
   const form = e.target
-  console.log('form submitted');
   const inputs = Array.from(form.querySelectorAll("input:not(input[type='submit'])"))
-  console.log(inputs)
-  const [title, author, numPages, completed] = inputs
-  const book = new Book(title.value, author.value, numPages.value, completed.checked)
+  
+  const [title, author, numPages, completed] = getFormData(inputs)
+  const book = new Book(title, author, numPages, completed)
   booksList.appendChild(createBookElement(book))
-  // clear form <-- extract into separate function
-  inputs.forEach(input => input.value = '')
-  // form.classList.toggle('hide')
-  // newBookButton.classList.toggle('hide')
+
+  clearForm(inputs)
+  form.classList.toggle('hide')
+  newBookButton.classList.toggle('hide')
 }
 
 newBookButton.addEventListener('click', handleNewBookClick)
