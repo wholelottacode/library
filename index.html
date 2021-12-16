@@ -8,29 +8,31 @@
   <title>Library</title>
 </head>
 <body>
-  <button>New Book</button>
-  <form>
-    <div>
-      <label for="title">Title</label>
-      <input name="title" type="text" required>
-    </div>
-    <div>
-      <label for="author">Author</label>
-      <input name="author" type="text" required>
-    </div>
-    <div>
-      <label for="pages">Number of Pages</label>
-      <input name="pages" type="number" min="1" required>
-    </div>
-    <div>
-      <label for="completed">Completed</label>
-      <input name="completed" type="checkbox">
-    </div>
-    <input type="submit" value='Add Book'>
-  </form>
-  <h2>Books</h2>
-  <ul class='books'>
-  </ul>
+  <div class="container">
+    <button>New Book</button>
+    <form>
+      <div>
+        <label for="title">Title</label>
+        <input name="title" type="text" required>
+      </div>
+      <div>
+        <label for="author">Author</label>
+        <input name="author" type="text" required>
+      </div>
+      <div>
+        <label for="pages">Number of Pages</label>
+        <input name="pages" type="number" min="1" required>
+      </div>
+      <div>
+        <label for="completed">Completed</label>
+        <input name="completed" type="checkbox">
+      </div>
+      <input type="submit" value='Add Book'>
+    </form>
+    <h2>Books</h2>
+    <ul class='books'>
+    </ul>
+  </div>
   <script src='index.js'></script>
 </body>
 </html>

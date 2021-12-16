@@ -1,3 +1,33 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .hide {
   display: none;
+}
+
+.container {
+  border: 2px solid black;
+  width: 50%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h2 {
+  text-align: center;
+}
+
+.books {
+  list-style: none;
+}
+
+.book {
+  background-color: darksalmon;
+  margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
 }

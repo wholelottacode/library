@@ -15,17 +15,18 @@ class Book {
 }
 
 let books = [
-  new Book('JK Rowling', "Harry Potter and the Sorcerer's Stone", 307, true),
-  new Book('F. Scott Fitzgerald', 'The Great Gatsby', 212, true),
-  new Book('Alexandre Dumas', 'The Count of Monte Cristo', 1215, false)
+  new Book("Harry Potter and the Sorcerer's Stone", 'JK Rowling', 307, true),
+  new Book('The Great Gatsby', 'F. Scott Fitzgerald', 212, true),
+  new Book('The Count of Monte Cristo', 'Alexandre Dumas', 1215, false)
 ]
 
 const createBookElement = (book) => {
   const container = document.createElement('div')
+  container.classList.add('book')
   const bookData = `
       <h3>${book.title}</h3>
       <p>${book.author}</p>
-      <p>Number of Pages: ${book.numPages}</p>
+      <p>${book.numPages} ${book.numPages === 1 ? 'Page' : 'Pages'}</p>
   `
   container.innerHTML = bookData
 
