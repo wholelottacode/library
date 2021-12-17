@@ -21,27 +21,35 @@ let books = [
 ]
 
 const createBookElement = (book) => {
+  const {title, author, numPages, isCompleted, id} = book 
   const container = document.createElement('div')
   container.classList.add('book')
+  const pages = `${numPages} ${numPages === 1 ? 'Page' : 'Pages'}`
   const bookData = `
-      <h3>${book.title}</h3>
-      <p>${book.author}</p>
-      <p>${book.numPages} ${book.numPages === 1 ? 'Page' : 'Pages'}</p>
+      <h3 ${isCompleted ? "class=completed" : ""}> ${title}</h3>
+      <p>${author} &bull; ${pages}</p>
   `
   container.innerHTML = bookData
 
+  const buttonContainer = document.createElement('div')
+  buttonContainer.setAttribute('class', 'button_container')
+
   const checkbox = document.createElement('input')
   checkbox.setAttribute('type', 'checkbox')
-  checkbox.setAttribute('id', book.id)
-  checkbox.checked = book.isCompleted
+  checkbox.setAttribute('id', id)
+  checkbox.checked = isCompleted
   checkbox.addEventListener('click', handleCheckboxClick)
-  container.appendChild(checkbox)
+  
 
   const deleteButton = document.createElement('button')
-  deleteButton.setAttribute('id', book.id)
+  deleteButton.setAttribute('id', id)
   deleteButton.textContent = 'Delete'
   deleteButton.addEventListener('click', handleDeleteClick)
-  container.appendChild(deleteButton)
+  
+  buttonContainer.appendChild(deleteButton)
+  buttonContainer.appendChild(checkbox)
+
+  container.appendChild(buttonContainer)
 
   const bookElement = document.createElement('li')
   bookElement.appendChild(container)
@@ -86,8 +94,8 @@ const handleFormSubmit = (e) => {
   
   const [title, author, numPages, completed] = getFormData(inputs)
   const book = new Book(title, author, parseInt(numPages), completed)
+  books.push(book)
   booksList.appendChild(createBookElement(book))
-
   clearForm(inputs)
   form.classList.toggle('hide')
   newBookButton.classList.toggle('hide')
@@ -97,12 +105,15 @@ const handleCheckboxClick = (e) => {
   const checkbox = e.target
   const book = books.find(book => book.id === Number(checkbox.getAttribute('id')))
   book.completed = checkbox.checked
+  const bookElement = checkbox.parentNode.parentNode
+  const title = bookElement.querySelector('h3')
+  title.classList.toggle('completed')
 }
 
 const handleDeleteClick = (e) => {
   const deleteButton = e.target
   books = books.filter(book => book.id !== Number(deleteButton.getAttribute('id')))
-  booksList.removeChild(deleteButton.parentNode.parentNode)
+  booksList.removeChild(deleteButton.parentNode.parentNode.parentNode)
 }
 
 newBookButton.addEventListener('click', handleNewBookClick)

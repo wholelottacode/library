@@ -4,12 +4,16 @@
   padding: 0;
 }
 
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: ghostwhite;
+}
+
 .hide {
   display: none;
 }
 
 .container {
-  border: 2px solid black;
   width: 50%;
   margin: 0 auto;
   padding: 1rem;
@@ -30,4 +34,56 @@ h2 {
   flex-direction: column;
   align-items: center;
   padding: 10px 0;
+  height: 120px;
+  justify-content: space-evenly;
+}
+
+.button_container {
+  width: 150px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.button_container > button {
+  color: red;
+}
+
+button, form > input[type="submit"] {
+  padding: 5px 10px;
+  border: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-bottom: 5px;
+  border-radius: 10xp;
+}
+
+form > div > input {
+  padding: 1px 5px;
+}
+
+form > .checkbox {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-evenly; */
+}
+
+form > .checkbox > label {
+  margin-right: 10px;
 }
